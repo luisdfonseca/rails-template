@@ -23,10 +23,16 @@ end
 #    - We'll add all 3 DB gems, but we'll control usage via config.
 #      This way you can switch or test easily in the future.
 # --------------------------------------------------------------------
+
+# Remove any default DB gems from the Gemfile to avoid duplicates
+gsub_file 'Gemfile', /^gem ["']sqlite3.*$/, ''
+gsub_file 'Gemfile', /^gem ["']pg.*$/, ''
+gsub_file 'Gemfile', /^gem ["']mysql2.*$/, ''
+
 insert_into_file 'Gemfile', after: /gem "rails".*\n/ do
   <<-RUBY
 
-# For DB usage
+# Database gems (we inject them ourselves)
 gem 'pg', group: :production
 gem 'mysql2', group: :production
 gem 'sqlite3', '~> 1.4'
