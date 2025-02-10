@@ -10,9 +10,9 @@
 # --------------------------------------------------------------------
 # 1. Ask which DB adapter to use for PRODUCTION (dev/test = sqlite3)
 # --------------------------------------------------------------------
-db_choice = ask("Which database do you want for PRODUCTION? [postgresql, mysql, sqlite3]").downcase
+db_choice = ask("Which database do you want for PRODUCTION? [pg, mysql, sqlite3]").downcase
 
-valid_dbs = %w[postgresql mysql sqlite3]
+valid_dbs = %w[pg mysql sqlite3]
 unless valid_dbs.include?(db_choice)
   say "Invalid choice. Defaulting to sqlite3."
   db_choice = "sqlite3"
